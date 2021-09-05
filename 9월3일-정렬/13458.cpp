@@ -6,7 +6,7 @@ using namespace std;
 
 double N, B, C;
 vector<double> A;
-long result=0;
+long result=0; //int로 하면 오류 발생
 
 int main() {
 
