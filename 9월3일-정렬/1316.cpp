@@ -20,13 +20,11 @@ int main() {
             //cout << word[j] << ' ';
             if (arr[word[j] - 'a']) {
                 if (word[j - 1] != word[j]) {
-                    //cout << "wrong" << '\n';
                     break;
                 } else
                     ch++;
             } else {
                 arr[word[j] - 'a'] = true;
-                //cout << "good" << '\n';
                 ch++;
             }
         }
