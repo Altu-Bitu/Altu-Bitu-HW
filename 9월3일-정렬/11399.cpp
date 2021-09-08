@@ -15,7 +15,7 @@ int func(int n, vector<int> v1){
 
     sort(v1.begin(), v1.end());
 
-    //´©ÀûÇÕ
+    //ëˆ„ì í•©
     int cnt=1;
     while(n>0){
         result += v1[n-1]*(cnt);
