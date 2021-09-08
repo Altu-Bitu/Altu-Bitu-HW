@@ -4,29 +4,37 @@
 
 using namespace std;
 
-double N, B, C;
-vector<double> A;
-long result=0; //int로 하면 범위 초과로 오류 발생
+int func(int n, vector<double> v1){
+    double B, C;
+    long long result=0; //int로 하면 범위 초과로 오류 발생
 
-int main() {
+    v1.assign(n, 0);
 
-    cin >> N;
-    A.assign(N, 0);
-
-    for (int i = 0; i < N; i++) {
-        cin >> A[i];
+    for (int i = 0; i < n; i++) {
+        cin >> v1[i];
     }
 
     cin>>B>>C;
 
-    for(int i=0; i<N; i++){
+    for(int i=0; i<n; i++){
         result += 1;
-        A[i]=A[i]-B;
-        if(A[i]>0){
-            result += ceil(A[i]/C);
+        v1[i]=v1[i]-B;
+        if(v1[i]>0){
+            result += ceil(v1[i]/C);
         }
 
     }
-    cout<<result;
+
+    return result;
+}
+
+int main() {
+    double N;
+    vector<double> A;
+    cin >> N;
+
+    int answer = func(N, A);
+
+    cout<<answer;
 
 }
