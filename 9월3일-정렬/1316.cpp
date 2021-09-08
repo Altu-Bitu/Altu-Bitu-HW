@@ -2,13 +2,11 @@
 
 using namespace std;
 
-int main() {
-    int N;
+int func(int n){
     int cnt = 0;
     bool arr[26];
-    cin >> N;
 
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < n; i++) {
         fill_n(arr, 26, false);
         int ch = 0;
 
@@ -33,7 +31,18 @@ int main() {
             cnt++;
 
     }
-    cout << cnt;
+
+    return cnt;
+}
+
+int main() {
+    int N;
+
+    cin >> N;
+
+    int answer = func(N);
+
+    cout << answer;
 
 }
 
