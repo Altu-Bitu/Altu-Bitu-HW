@@ -13,7 +13,7 @@ int func(int n, vector<int> v1){
         v1.push_back(num);
     }
 
-    sort(v1.begin(), v1.end());
+    sort(v1.begin(), v1.end()); //정렬
 
     //누적합
     int cnt=1;
