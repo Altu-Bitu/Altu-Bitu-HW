@@ -4,29 +4,36 @@
 
 using namespace std;
 
-int main(){
-    vector<int> v;
-    int N;
+int func(int n, vector<int> v1){
     int result=0;
 
-    cin>>N;
-
-    for(int i=0; i<N;i++){
+    for(int i=0; i<n;i++){
         int num;
         cin>>num;
-        v.push_back(num);
+        v1.push_back(num);
     }
 
-    sort(v.begin(), v.end()); //정렬
+    sort(v1.begin(), v1.end());
 
     //누적합
     int cnt=1;
-    while(N>0){
-        result += v[N-1]*(cnt);
-        N--;
+    while(n>0){
+        result += v1[n-1]*(cnt);
+        n--;
         cnt++;
     }
 
-    cout<<result;
+    return result;
+}
+
+int main(){
+    vector<int> v;
+    int N;
+
+    cin>>N;
+
+   int answer = func(N, v);
+
+    cout<<answer;
 }
 
