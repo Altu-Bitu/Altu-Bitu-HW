@@ -4,33 +4,40 @@
 
 using namespace std;
 
+int func(int n, vector <int> v1, vector<int> v2){
+    int num;
+    int result = 0;
+    for (int i = 0; i < n; i++) {
+
+        cin >> num;
+        v1.push_back(num);
+    }
+
+    for (int i = 0; i < n; i++) {
+
+        cin >> num;
+        v2.push_back(num);
+    }
+
+    //A 오름차순 정렬, B 내림차순 정렬해서 곱해야 최솟값을 구할 수 있음.
+    sort(v1.begin(), v1.end());
+    sort(v2.begin(), v2.end(), greater<>());
+
+    for (int i = 0; i < n; i++) {
+        result += v1[i] * v2[i];
+    }
+
+    return result;
+}
 
 int main() {
     int N;
     vector<int> A;
     vector<int> B;
-    int result = 0;
-    int num;
+
     cin >> N;
 
-    for (int i = 0; i < N; i++) {
+    int answer = func(N, A, B);
 
-        cin >> num;
-        A.push_back(num);
-    }
-
-    for (int i = 0; i < N; i++) {
-
-        cin >> num;
-        B.push_back(num);
-    }
-
-    //A 오름차순 정렬, B 내림차순 정렬해서 곱해야 최솟값을 구할 수 있음.
-    sort(A.begin(), A.end());
-    sort(B.begin(), B.end(), greater<>());
-
-    for (int i = 0; i < N; i++) {
-        result += A[i] * B[i];
-    }
-    cout << result;
+    cout << answer;
 }
