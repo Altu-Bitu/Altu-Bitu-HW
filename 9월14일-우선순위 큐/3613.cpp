@@ -13,23 +13,25 @@ using namespace std;
 int judging(string str) {
     if (!islower(str[0]) || str[str.length() - 1] == '_') //오류 1,6
         return -1;
-    for (int i = 2; i < str.length(); i++) {
+    for (int i = 1; i < str.length(); i++) {
         if (str[i - 1] == '_') { //오류 2,3
             if(str[i]=='_')
                 return -1;
             for(int j=i; j<str.length(); j++){
-                if(isupper(str[j]))
+                if(isupper(str[j])) //대문자나오면 java로 판단
                     return -1;
             }
+            return 0;
+
         }
         else {
-            if (isupper(str[i]))//java라고 인식
+            if (isupper(str[i])) {//java라고 판단
                 return 1;
-
-            else//c++이라고 인식
-                return 0;
+            }
         }
     }
+    return 0;//c++이라고 판단
+
 }
 
 string cppToJava(string str) {
