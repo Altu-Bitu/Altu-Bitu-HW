@@ -14,11 +14,12 @@ int judging(string str) {
     if (!islower(str[0]) || str[str.length() - 1] == '_') //오류 1,6
         return -1;
     for (int i = 1; i < str.length(); i++) {
-        if (str[i - 1] == '_') { //오류 2,3
-            if(str[i]=='_')
+        if (str[i - 1] == '_') { //c++로 판단
+            //예외처리
+            if(str[i]=='_') //오류2
                 return -1;
             for(int j=i; j<str.length(); j++){
-                if(isupper(str[j])) //대문자나오면 java로 판단
+                if(isupper(str[j])) //오류3,4
                     return -1;
             }
             return 0;
@@ -26,6 +27,11 @@ int judging(string str) {
         }
         else {
             if (isupper(str[i])) {//java라고 판단
+                for(int j=i+1; j<str.length(); j++){//오류5
+                    if(str[j]=='_')
+                        return -1;
+                }
+
                 return 1;
             }
         }
@@ -39,8 +45,7 @@ string cppToJava(string str) {
     for (int i = 0; i < str.length(); i++) {
         if (str[i] == '_') {
             result.append(1, toupper(str[++i]));
-        } else if (isupper(str[i]))//오류 4
-            return "Error!";
+        }
         else {
             result.append(1, str[i]);
         }
@@ -54,8 +59,7 @@ string javaToCpp(string str) {
         if (isupper(str[i])) {
             result.append(1, '_');
             result.append(1, tolower(str[i]));
-        } else if (str[i] == '_')//오류 5
-            return "Error!";
+        }
         else {
             result.append(1, str[i]);
         }
