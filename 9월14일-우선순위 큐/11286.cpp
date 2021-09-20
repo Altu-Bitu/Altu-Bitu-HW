@@ -1,43 +1,36 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
+#include <cmath>
 
 
 using namespace std;
 
-void absHeap(int n, priority_queue<int, vector<int>, greater<int>> pq1, priority_queue<int> pq2){
+struct compare{
+    //pair의 first: 절댓값, second: 원래 값(음수/양수)
+    bool operator()(const pair<int, int> &A, const pair<int,int> &B){
+        if(A.first == B.first){ //절댓값이 같은 경우
+            return A.second > B.second; //원래 값 비교
+        }
+        else //절댓값이 다른 경우
+            return A.first > B.first; //절댓값으로 비교
+    }
+};
+
+void absHeap(int n, priority_queue<pair<int,int>, vector<pair<int,int>>, compare> pq1){
     for(int i=0; i<n; i++){
         int num;
         cin>>num;
 
-        if(num!=0){
-            if(num>0)
-                pq1.push(num);
-            else
-                pq2.push(num);
+        if(num!=0){ //push
+            pq1.push(pair<int,int>(abs(num),num)); //절댓값과 원래 값을 pair로 만들어 push
         }
-        else{
-            if(pq1.empty() && pq2.empty()) //둘 다 비어있는 경우
+        else{ //pop
+            if(pq1.empty()) //둘 다 비어있는 경우
                 cout<<"0\n";
-            else{
-                if(pq1.empty()){ //pq1이 비어있으면 pq2에서 pop
-                    cout<<pq2.top()<<'\n';
-                    pq2.pop();
-                }
-                else if(pq2.empty()){ //pq2가 비어있으면 pq1에서 pop
-                    cout<<pq1.top()<<'\n';
-                    pq1.pop();
-                }
-                else{ //둘 다 있는 경우, 절댓값 비교 - 작은 값 있는 우선순위 큐에서 pop
-                    if(pq1.top()<pq2.top()*(-1)){
-                        cout<<pq1.top()<<'\n';
-                        pq1.pop();
-                    }
-                    else{
-                        cout<<pq2.top()<<'\n';
-                        pq2.pop();
-                    }
-                }
+            else {
+                cout<<pq1.top().second<<"\n"; //원래값 출력하고 pop
+                pq1.pop();
             }
         }
     }
@@ -45,12 +38,14 @@ void absHeap(int n, priority_queue<int, vector<int>, greater<int>> pq1, priority
 
 int main(){
     //출력할 때 양수, 음수 고려해서 출력하므로 양수 담은 우선순위 큐, 음수 담은 우선순위 큐 둘 다 만들어야한다.
-    priority_queue<int, vector<int>, greater<int>> pq1; //양수 오름차순 저장 ex. 1, 2, 3
-    priority_queue<int> pq2; //음수 담은 우선순위 큐-내림차순 ex. -1, -2, -3
+
+    priority_queue<pair<int,int>, vector<pair<int,int>>, compare> pq1;
+    //priority_queue<자료형, container, compare함수>로 정의
+
     int n;
 
     cin>>n;
 
-    absHeap(n, pq1, pq2);
+    absHeap(n, pq1);
 
 }
