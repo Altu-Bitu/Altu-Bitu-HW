@@ -5,14 +5,7 @@
 
 using namespace std;
 
-int main(){
-    //출력할 때 양수, 음수 고려해서 출력하므로 양수 담은 우선순위 큐, 음수 담은 우선순위 큐 둘 다 만들어야한다.
-    priority_queue<int, vector<int>, greater<int>> pq1; //양수 오름차순 저장 ex. 1, 2, 3
-    priority_queue<int> pq2; //음수 담은 우선순위 큐-내림차순 ex. -1, -2, -3
-    int n;
-
-    cin>>n;
-
+void absHeap(int n, priority_queue<int, vector<int>, greater<int>> pq1, priority_queue<int> pq2){
     for(int i=0; i<n; i++){
         int num;
         cin>>num;
@@ -48,4 +41,16 @@ int main(){
             }
         }
     }
+}
+
+int main(){
+    //출력할 때 양수, 음수 고려해서 출력하므로 양수 담은 우선순위 큐, 음수 담은 우선순위 큐 둘 다 만들어야한다.
+    priority_queue<int, vector<int>, greater<int>> pq1; //양수 오름차순 저장 ex. 1, 2, 3
+    priority_queue<int> pq2; //음수 담은 우선순위 큐-내림차순 ex. -1, -2, -3
+    int n;
+
+    cin>>n;
+
+    absHeap(n, pq1, pq2);
+
 }
