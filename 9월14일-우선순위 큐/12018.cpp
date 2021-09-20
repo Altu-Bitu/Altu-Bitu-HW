@@ -34,13 +34,21 @@ int main(){
 
     sort(v.begin(), v.end()); //오름차순 정렬, 작은 것부터 빼서 최대로 수강신청 가능하게 하도록 한다.
 
-    for(int i=0; i<v.size(); i++){
+    /*for(int i=0; i<v.size(); i++){
         if(mileage - v[i]>=0){
             mileage -= v[i];
             cnt++;
+            cout<<"i: "<<i<<"\n";
+            cout<<"cnt: "<<cnt<<"\n";
         }
         else
             break;
+    }*/
+
+    int idx=0;
+    while(mileage-v[idx]>=0 && idx<=v.size()){ //idx가 너무 커져서 v사이즈 넘을 경우 고려해야함.
+        mileage -= v[idx];
+        idx++;
     }
 
     cout<<cnt;
