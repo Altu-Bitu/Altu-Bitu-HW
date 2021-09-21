@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//하나의 함수로 문자열을 하나하나 조사하며 이것이 cpp인지 java인지 조사하는 것보다
+//cpp이라고 가정하고 아닌 것 찾기, java라고 가정하고 아닌 것 찾기 함수를 따로 만들어서 하는 것이 더 효율적이다.
+
 //오류인 상황
 //1. str[0]='_' or 대문자
 //2. '-'가 연속으로 등장
@@ -10,35 +13,34 @@ using namespace std;
 //5. java라고 인식했는데 '-' 등장
 //6. 마지막 문자가 '-'
 
-int judging(string str) {
-    if (!islower(str[0]) || str[str.length() - 1] == '_') //오류 1,6
-        return -1;
-    for (int i = 1; i < str.length(); i++) {
-        if (str[i - 1] == '_') { //c++로 판단
-            //예외처리
-            if(str[i]=='_') //오류2
-                return -1;
-            for(int j=i; j<str.length(); j++){
-                if(isupper(str[j])) //오류3,4
-                    return -1;
-            }
-            return 0;
-
-        }
-        else {
-            if (isupper(str[i])) {//java라고 판단
-                for(int j=i+1; j<str.length(); j++){//오류5
-                    if(str[j]=='_')
-                        return -1;
-                }
-
-                return 1;
-            }
-        }
+//cpp형식이라고 가정하고 cpp형식이 아니면 false 반환
+bool isCpp(string str) { //c++ 형식인가?
+    for (int i = 0; i < str.size(); i++) {
+        if (isupper(str[i])) //대문자가 있으면 안됨
+            return false;
+        if (str[i] == '_' && (i == 0 || i == str.size() - 1 || str[i - 1] == '_')) //첫 or 마지막 글자가 '_' 또는 '_'가 연속 등장
+            return false;
     }
-    return 0;//c++이라고 판단
-
+    return true;
 }
+
+//java형식이라고 가정하고 java형식이 아니면 false 반환
+bool isJava(string str) { //java 형식인가?
+    return !isupper(str[0]) && str.find('_') == string::npos; //첫 글자가 대문자거나, '_'가 있으면 안됨
+    //find함수가 찾는 대상이 문자열에 없다면 string::npos를 반환한다.
+    //문자열에서 찾고싶은 문자(열)이 있다면 find함수 사용하기
+}
+
+string toCpp(string str) { //java 형식을 c++로
+    string result;
+    for (int i = 0; i < str.size(); i++) {
+        if (isupper(str[i])) //대문자라면 앞에 '_' 삽입
+            result += '_';
+        result += tolower(str[i]); //소문자로 바꿔서 넣기
+    }
+    return result;
+}
+
 
 string cppToJava(string str) {
     string result = "";
@@ -72,11 +74,15 @@ int main() {
     string answer;
     cin >> val;
 
-    int result = judging(val);
+    bool is_cpp = isCpp(val);
+    bool is_java = isJava(val);
 
-    if (result == 1) { //java로 판단
+
+    if(is_cpp && is_java)
+        answer = val;
+    else if (is_java)  //java로 판단
         answer = javaToCpp(val);
-    } else if (result == 0) //c++로 판단
+    else if (is_cpp) //c++로 판단
         answer = cppToJava(val);
     else //오류로 판단
         answer = "Error!";
