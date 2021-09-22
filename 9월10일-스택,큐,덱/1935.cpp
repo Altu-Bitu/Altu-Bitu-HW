@@ -55,7 +55,6 @@ double operating(int n, string str){
                 result = b - a;
                 st.push(result);
             }
-            //cout<<"mid: "<<result<<'\n';
         }
     }
     return result;
