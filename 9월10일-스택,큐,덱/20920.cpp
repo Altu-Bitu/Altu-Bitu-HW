@@ -2,8 +2,9 @@
 #include <vector>
 #include <algorithm>
 
-using namespace std;\
+using namespace std;
 
+//수정필요
 bool cmp(string a, string b){
 
 };
