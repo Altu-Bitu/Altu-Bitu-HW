@@ -5,6 +5,7 @@
 using namespace std;
 
 vector<bool> is_prime;
+
 //에라토스테네스의 체
 void isPrime(int n){
     is_prime.assign(n+1, true);
