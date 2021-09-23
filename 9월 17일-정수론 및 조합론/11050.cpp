@@ -15,10 +15,10 @@ int main(){
     //k!
     for(int i=1; i<=k; i++)
         b *= i;
-
+    //(n-k)!
     for(int i=1; i<=n-k; i++)
         c *= i;
-    //(n-k)!
+
     int answer = a/(b*c);
 
     cout<<answer;
