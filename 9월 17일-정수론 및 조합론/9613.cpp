@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//최대공약수 구하기 - 유클리드 호제법
+//최대공약수 구하기 - 유클리드 호제법 이용
 int gcd(int a, int b){
     if(a%b==0)
         return b;
