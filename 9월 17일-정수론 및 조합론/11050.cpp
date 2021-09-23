@@ -2,6 +2,14 @@
 
 using namespace std;
 
+//팩토리얼 함수
+int fact(int n){
+    int r=1;
+    for(int i=1; i<=n; i++)
+        r *= i;
+    return r;
+}
+
 int main(){
     int n, k;
     int a=1,b=1,c=1;
@@ -9,16 +17,12 @@ int main(){
     cin>>n>>k;
 
     //n!
-    for(int i=1; i<=n; i++){
-        a *=i;
-    }
+    a = fact(n);
     //k!
-    for(int i=1; i<=k; i++)
-        b *= i;
-
-    for(int i=1; i<=n-k; i++)
-        c *= i;
+    b = fact(k);
     //(n-k)!
+    c = fact(n-k);
+
     int answer = a/(b*c);
 
     cout<<answer;
