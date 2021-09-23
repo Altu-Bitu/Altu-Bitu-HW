@@ -11,7 +11,7 @@ void isPrime(int n){
     is_prime.assign(n+1, true);
     for(int i=2; i<=sqrt(n); i++){ //제곱근
         if(is_prime[i]){
-            for(int j=i+i; j<=n; j+=i){
+            for(int j=i*i; j<=n; j+=i){//j는 i*i부터 시작
                 if(!is_prime[j])
                     continue;
                 is_prime[j]=false;
@@ -24,7 +24,7 @@ void isPrime(int n){
 string goldbach(int n){
     string result;
 
-    for(int i=3; i<=n; i++){
+    for(int i=3; i<=n; i+=2){ //홀수만 체크
         if(is_prime[i] && is_prime[n-i]){ //n도 소수, n-i도 소수인 경우
             result = to_string(n)+" = "+to_string(i)+" + " + to_string(n-i);
             return result;
