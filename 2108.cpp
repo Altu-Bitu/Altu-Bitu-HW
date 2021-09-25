@@ -5,7 +5,7 @@
 
 using namespace std;
 
-bool cmp(pair<int,int> p1, pair<int, int>p2){
+bool cmp(pair<int,int> p1, pair<int, int>p2){ //등장 횟수가 같다면 first기준 오름차순으로 정렬
   if(p1.second==p2.second)
       return p1.first<p2.first;
   return p1.second>p2.second;
@@ -13,14 +13,14 @@ bool cmp(pair<int,int> p1, pair<int, int>p2){
 
 int main(){
     int n;
-    vector<pair<int,int>> v;
+    vector<pair<int, int>> v;
     pair<int, int>pa;
 
-    int avg;
-    int mid;
-    int fre;
-    int range;
-    int s=0;
+    int avg; //산술평균
+    int mid; //중앙값
+    int fre; //최빈값
+    int range; //범위
+    double s=0;
 
     cin>>n;
     for(int i=0; i<n; i++){
@@ -31,9 +31,7 @@ int main(){
         s+=num;
     }
 
-
-
-    sort(v.begin(), v.end());
+    sort(v.begin(), v.end()); //숫자값 기준 정렬
 
     avg = floor((double)s/n+0.5);
     mid = v[n/2].first;
@@ -46,10 +44,11 @@ int main(){
         }
     }
 
-    sort(v.begin(), v.end(), cmp);
+    sort(v.begin(), v.end(), cmp); //등장횟수 기준 정렬
 
-    if(v[0].second==v[1].second)
-        fre=v[1].first;
+
+    if(v[0].second==v[v[0].second].second) //등장횟수가 같은 숫자값이 있다는 것
+        fre=v[v[0].second].first;
     else
         fre=v[0].first;
 
@@ -58,8 +57,8 @@ int main(){
     cout<<fre<<'\n';
     cout<<range<<'\n';
 
-    for(int i=0; i<n; i++){
+    /*for(int i=0; i<n; i++){
         cout<<v[i].first<<' '<<v[i].second<<'\n';
-    }
+    }*/
 }
 
