@@ -4,13 +4,12 @@
 using namespace std;
 
 int main(){
-    //pair: 내구도, 박스 유무
+    //pair: <내구도, 박스 유무>
     deque<pair<int, bool>> dq1; //1, 2, 3,-, N
     deque<pair<int, bool>> dq2; //2N, 2N-1, 2N-2,-, N+1
 
     int n,k;
     int cnt=0; //몇 단계에서 종료
-
 
     //입력
     cin>>n>>k;
