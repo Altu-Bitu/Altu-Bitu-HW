@@ -6,59 +6,52 @@ using namespace std;
 string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> &q2){
     int a=0,b=0;
     int i;
-    int cnt=1;
-    for(i=0; i<2500000; i++){
+    int cnt=0;
+    for(i=0; i<m; i++){
         //cout<<"i: "<<i<<'\n';
         if(i%2==0) {
+            if(dq1.empty())
+               break;
+
             a = dq1.front();
             dq1.pop_front(); //도도의 덱에서 빼서
             q1.push(a); //그라운드에 넣기
-            a= q1.back();
-            if (dq1.empty() || dq2.empty()) {
-                if (dq1.empty()) {
-                   break;
-                } else {
-                   break;
-                }
-            }
 
-            if (a == 5) { //도도의 것이 5가 나왔을 때, 도도가 가져감
+
+
+            if (q1.back() == 5) { //도도의 것이 5가 나왔을 때, 도도가 가져감
                 while(!q2.empty()) { //수연 그라운드에 있던 카드들 다 가져가고
                     int st = q2.front();
                     q2.pop();
                     dq1.push_back(st);
-                    b=q2.back();
+
                 }
 
                 while(!q1.empty()) { //자기 그라운드의 카드들 다 가져간다.
                     int st = q1.front();
                     q1.pop();
                     dq1.push_back(st);
-                    a= q1.back();
+
                 }
 
             }
 
-            if (a + b == 5) {
+            if (!dq1.empty() && !dq2.empty() && !q1.empty() && !q2.empty() && q1.back() + q2.back() == 5) {
                 while(!q1.empty()) { //도도 그라운드의 카드들 다 가져간다.
                     int st = q1.front();
                     q1.pop();
                     dq2.push_back(st);
-                    a= q1.back();
+
                 }
                 while(!q2.empty()) { //자기 그라운드의 카드들 다 가져간다.
                     int st = q2.front();
                     q2.pop();
                     dq2.push_back(st);
-                    b=q2.back();
+
                 }
             }
             if (dq1.empty() || dq2.empty()) {
-                if (dq1.empty()) {
-                    break;
-                } else {
-                    break;
-                }
+              break;
             }
             ++cnt;
             //cout<<"do: "<<dq1.size()<<' '<<q1.size()<<'\n';
@@ -70,25 +63,24 @@ string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> 
         }
         //cout<<"i: "<<i<<'\n';
         else {
+            if(dq2.empty())
+                break;
+
             b = dq2.front();
             dq2.pop_front();
             q2.push(b);
-            b=q2.back();
+
             if (dq1.empty() || dq2.empty()) {
-                if (dq1.empty()) {
-                    break;
-                } else {
-                    break;
-                }
+                break;
             }
 
-            if (b == 5) { //수연이의 것이 5가 나왔을 때, 도도가 가져감
+            if (q2.back() == 5) { //수연이의 것이 5가 나왔을 때, 도도가 가져감
                 while(!q2.empty()) { //수연 그라운드에 있던 카드들 다 가져가고
                     int st = q2.front();
                     //cout<<"st: "<<st<<'\n';
                     q2.pop();
                     dq1.push_back(st);
-                    b=q2.back();
+
 
                 }
 
@@ -97,31 +89,27 @@ string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> 
                     //cout<<"st: "<<st<<'\n';
                     q1.pop();
                     dq1.push_back(st);
-                    a= q1.back();
+
                 }
 
             }
 
-            if (a + b == 5) {
+            if (!dq1.empty() && !dq2.empty() && !q1.empty() && !q2.empty() && q1.back() + q2.back() == 5) {
                 while(!q1.empty()) { //도도 그라운드의 카드들 다 가져간다.
                     int st = q1.front();
                     q1.pop();
                     dq2.push_back(st);
-                    a= q1.back();
+
                 }
                 while(!q2.empty()) { //자기 그라운드의 카드들 다 가져간다.
                     int st = q2.front();
                     q2.pop();
                     dq2.push_back(st);
-                    b=q2.back();
+
                 }
             }
             if (dq1.empty() || dq2.empty()) {
-                if (dq1.empty()) {
-                    break;
-                } else {
-                    break;
-                }
+               break;
             }
             ++cnt;
             //++i;
