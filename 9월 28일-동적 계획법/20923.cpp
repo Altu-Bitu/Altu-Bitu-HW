@@ -12,11 +12,9 @@ void game(deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> &q2){
         if(dq1.empty() || dq2.empty()) {
             if(dq1.empty()){
                 arr[i]="su";
-                //break;
             }
             else{
                 arr[i]="do";
-                //break;
             }
         }
         else{
