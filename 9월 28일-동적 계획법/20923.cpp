@@ -6,7 +6,6 @@ using namespace std;
 string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> &q2){
     int a=0,b=0;
     int i;
-    int cnt=0;
     for(i=0; i<m; i++){
         //cout<<"i: "<<i<<'\n';
         if(i%2==0) {
@@ -17,7 +16,9 @@ string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> 
             dq1.pop_front(); //도도의 덱에서 빼서
             q1.push(a); //그라운드에 넣기
 
-
+            if (dq1.empty() || dq2.empty()) { //덱 비었는지 체크
+                break;
+            }
 
             if (q1.back() == 5) { //도도의 것이 5가 나왔을 때, 도도가 가져감
                 while(!q2.empty()) { //수연 그라운드에 있던 카드들 다 가져가고
@@ -36,7 +37,7 @@ string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> 
 
             }
 
-            if (!dq1.empty() && !dq2.empty() && !q1.empty() && !q2.empty() && q1.back() + q2.back() == 5) {
+            if (!q1.empty() && !q2.empty() && q1.back() + q2.back() == 5) {
                 while(!q1.empty()) { //도도 그라운드의 카드들 다 가져간다.
                     int st = q1.front();
                     q1.pop();
@@ -53,12 +54,11 @@ string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> 
             if (dq1.empty() || dq2.empty()) {
               break;
             }
-            ++cnt;
+
             //cout<<"do: "<<dq1.size()<<' '<<q1.size()<<'\n';
             //cout<<"su: "<<dq2.size()<<' '<<q2.size()<<'\n';
             //cout<<"cnt: "<<cnt<<'\n';
-            if(cnt==m-1)
-                break;
+
 
         }
         //cout<<"i: "<<i<<'\n';
@@ -70,7 +70,7 @@ string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> 
             dq2.pop_front();
             q2.push(b);
 
-            if (dq1.empty() || dq2.empty()) {
+            if (dq1.empty() || dq2.empty()) {//덱 비었는지 체크
                 break;
             }
 
@@ -94,7 +94,7 @@ string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> 
 
             }
 
-            if (!dq1.empty() && !dq2.empty() && !q1.empty() && !q2.empty() && q1.back() + q2.back() == 5) {
+            if (!q1.empty() && !q2.empty() && q1.back() + q2.back() == 5) {
                 while(!q1.empty()) { //도도 그라운드의 카드들 다 가져간다.
                     int st = q1.front();
                     q1.pop();
@@ -111,15 +111,14 @@ string game(int m, deque<int> &dq1, queue<int> &q1, deque<int> &dq2, queue<int> 
             if (dq1.empty() || dq2.empty()) {
                break;
             }
-            ++cnt;
+
             //++i;
             //cout<<"i: "<<i<<'\n';
             //cout<<"do: "<<dq1.size()<<' '<<q1.size()<<'\n';
             //cout<<"su: "<<dq2.size()<<' '<<q2.size()<<'\n';
             //cout<<"m-1: "<<m-1<<'\n';
             //cout<<"cnt: "<<cnt<<'\n';
-            if(cnt==m-1)
-                break;
+
         }
 
 
