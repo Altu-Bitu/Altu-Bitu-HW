@@ -11,7 +11,7 @@ void divide(int r, int c, int row, int col, int size) {
         found = true; //찾았다! - 종료
         return; //리턴
     }
-    if (found) //?
+    if (found) //10~13번 줄에서 found가 true로 바뀌었다면 이것을 이용해서 이후에 재귀로 호출되었을 때도 다른 코드 안 거치고 종료되도록 한다.
         return;
 
     //Combine : (r, c)보다 먼저 탐색하는 원소의 개수 세기
