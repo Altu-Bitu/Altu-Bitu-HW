@@ -68,5 +68,8 @@ int main() {
         it = map1.lower_bound(input); //lower_bound함수
         cout<<it->second<<'\n';
     }
+
+    //map의 입력 참고 https://hashcode.co.kr/questions/1245/mapinsert%EB%9E%91-%EC%A4%91%EC%97%90-%EC%96%B4%EB%8A%90%EA%B1%B8-%EC%93%B0%EB%8A%94%EA%B2%8C-%EB%A7%9E%EB%8A%94%EA%B1%B4%EA%B0%80%EC%9A%94
+    //map의 lower_bound 참고 https://velog.io/@doontagi/C-map-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80-upperbound-lowerbound-%EB%A9%94%EC%84%9C%EB%93%9C
 }
 
