@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int findingMinSize(vector<int> &v, int n, int m){
+int findingMinSize(vector<int> &v, int n, int m, int maxSize, int lectureSum){
     //블루레이의 길이에 집중
     //강의 길의의 총합보다 블루레이 크기가 크면 블루레이 하나
     //블루레이의 크기를 줄일수록 블루레이 개수는 증가할 것
@@ -22,13 +22,7 @@ int findingMinSize(vector<int> &v, int n, int m){
     //강의를 하나씩 담아보면서 mid값보다 커지면 블루레이 개수를 하나 증가시킨다.
     //cnt가 m보다 커지면 강의 길이를 크게 해야함 left=mid+1
     //아니면 강의 길이를 작게 해야함 right=mid-1
-    int maxSize=0;
-    int lectureSum=0;
-    for(int i=0; i<n; i++){
-        if(maxSize<v[i])
-            maxSize=v[i];
-        lectureSum += v[i];
-    }
+
 
     int left = maxSize;
     int right = lectureSum;
@@ -71,7 +65,15 @@ int main(){
         cin>>v[i];
     }
 
+    int maxSize=0;
+    int lectureSum=0;
+    for(int i=0; i<n; i++){
+        if(maxSize<v[i])
+            maxSize=v[i];
+        lectureSum += v[i];
+    }
+
     //출력
-    int answer=findingMinSize(v,n,m);
+    int answer=findingMinSize(v,n,m,maxSize,lectureSum);
     cout<<answer;
 }
