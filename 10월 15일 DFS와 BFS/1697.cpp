@@ -51,3 +51,6 @@ int main(){
     cout<<answer;
     
 }
+
+//참고: https://chanhuiseok.github.io/posts/baek-14/
+//큐에 가능한 위치 넣어서 탐색하는 부분 설명 참고하였습니다.
