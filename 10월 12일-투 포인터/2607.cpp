@@ -1,89 +1,49 @@
 #include <iostream>
 #include <vector>
-#include <map>
 
 using namespace std;
-//실패
-//비교 기준 문자열의 알파벳 - 비교 대상 문자열의 알파벳 이 1일 때 비슷하다.
-//아닌가?
+const int SIZE = 26; //전체 알파벳 개수: 26개
 
-vector<int> alphabet; //비교 기준 알파벳 저장할 배열 (문자의 등장 횟수)
-
-int similar(int n, string str){
-    vector<int> newAlphabet;
-    int cnt=0;
-    int answer=0;
-
-    for(int t=0; t<26; t++){
-        //char a = 'A'+t;
-        newAlphabet.push_back(0);
-    }
-
-    for(int i=0; i<str.length(); i++){
-        //alphabet[str[i]-65].second++;
-        alphabet[str[i]-65]++;
-        //for(int j=0; j<26; j++)
-        //    cout<<alphabet[j].second<< ' ';
-    }
-
-
-    for(int i=0; i<n-1; i++){
-        cnt=0;
-        for(int t=0; t<26; t++){
-            //newAlphabet[t].second=0; //초기화
-            newAlphabet[t]=0;
-        }
-
-        string s;
-        cin>>s;
-        for(int j=0; j<s.length(); j++){
-            //newAlphabet[s[j]-65].second++;
-            newAlphabet[s[j]-65]++;
-        }
-
-        for(int p=0; p<26; p++){
-            //cnt += newAlphabet[p].second - alphabet[p].second;
-            cnt += abs(newAlphabet[p]-alphabet[p]);
-        }
-        //cout<<"cnt: "<<cnt<<'\n';
-        
-        /**
-    * 단어가 같은 구성일 조건
-    * 1. 두 개의 단어가 같은 종류의 문자로 이루어짐
-    * 2. 같은 문자는 같은 개수만큼 있음
-    *
-    * 비슷한 단어의 조건
-    * 1. 한 단어에서 한 문자를 더하거나, 빼면 같은 구성이 됨
-    *    -> 두 단어에서 다른 문자의 개수가 총 1개
-    * 2. 한 단어에서 한 문자를 바꾸면 같은 구성이 됨
-    *    -> 두 단어에서 다른 문자의 개수가 총 2개
-    *    -> !주의! 이때, 두 단어의 길이가 같아야 함 cf) doll | do
-    */
-        if(cnt==0 || cnt==1 || (cnt==2&&s.length()==str.length())){ //비슷한 단어의 조건 두 번째 것 추가해야함.
-            answer++;
-        }
-       
-    }
-    return answer;
+//알파벳별 등장횟수 저장
+vector<int> alphaMap(string str) {
+    vector<int> result(SIZE, 0);
+    for (int i = 0; i < str.size(); i++)
+        result[str[i] - 'A']++; //str의 각 문자별 등장 횟수 저장, 인덱스: str[i] - 'A'
+    return result; //result 벡터 리턴
 }
 
-int main(){
-    int n;
-    int answer;
+/**
+ * 단어가 같은 구성일 조건
+ * 1. 두 개의 단어가 같은 종류의 문자로 이루어짐
+ * 2. 같은 문자는 같은 개수만큼 있음
+ *
+ * 비슷한 단어의 조건
+ * 1. 한 단어에서 한 문자를 더하거나, 빼면 같은 구성이 됨
+ *    -> 두 단어에서 다른 문자의 개수가 총 1개
+ * 2. 한 단어에서 한 문자를 바꾸면 같은 구성이 됨
+ *    -> 두 단어에서 다른 문자의 개수가 총 2개
+ *    -> !주의! 이때, 두 단어의 길이가 같아야 함 cf) doll | do
+ */
+int main() {
+    int n, ans = 0;
+    string source, target;
 
-    cin>>n;
+    //입력
+    cin >> n >> source; //개수, 기준 문자열
 
-    string str; //비교 기준
-    cin>>str;
+    //연산
+    vector<int> source_alpha = alphaMap(source); //기준 문자열에서의 알파벳별 등장횟수 저장 배열
+    while (--n) {
+        cin >> target; //비교 대상 문자열
 
-    alphabet.assign(26,0);
+        int diff = 0; 
+        vector<int> target_alpha = alphaMap(target); //비교 대상 문자열에서의 알파벳별 등장횟수 저장 배열
+        for (int i = 0; i < SIZE; i++) //두 단어의 차이 계산
+            diff += abs(source_alpha[i] - target_alpha[i]); //절댓값으로 해야함. 절댓값 안 하면 음수가 계산될 수 있어서 문제 발생
+        if (diff <= 1 || (diff == 2 && source.size() == target.size())) //문자를 더하거나, 빼거나, 바꾸거나(+비교 기준 문자열과 비교 대상 문자열 크기 같아야함.)
+            ans++; //정답 개수 증가
+    }
 
-    //for(int i=0; i<26; i++){
-        //char a = 'A'+i;
-        //alphabet.push_back(make_pair(a,0));
-    //}
-
-    answer = similar(n,str);
-    cout<<answer;
-   
+    //출력
+    cout << ans;
 }
