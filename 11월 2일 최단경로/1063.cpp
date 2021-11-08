@@ -30,18 +30,12 @@ void move(){
         int sfirst = stonepos[0]-'A'+1; //돌 자리-알파벳 (char->int)
         int ssecond = stonepos[1]-'0'; //돌 자리-숫자 (char->int)
         string nstonepos=stonepos; //다음 킹 자리
-        
-        //cout<<"킹: "<<kfirst<<'\n';
-        //cout<<"돌: "<<sfirst<<'\n';
 
         if(command[i]=="R"){ //R 이동
             
             kfirst=kfirst+1;
             nkingpos[0]=kfirst+'A'-1;
             nkingpos[1]=ksecond+'0';
-
-            //cout<<"다음: " << nkingpos<<'\n';
-            //cout<<"f: "<<kfirst<<"s: "<<ksecond<<'\n';
 
             if(!valid(kfirst, ksecond)){
                 continue;
@@ -51,7 +45,6 @@ void move(){
                 sfirst=sfirst+1;
                 nstonepos[0]=sfirst+'A'-1;
                 nstonepos[1]=ssecond+'0';
-                //cout<<"다음: "<<nstonepos<<'\n';
             }
             if(valid(sfirst, ssecond)){ //이동한 킹 자리와 이동한 돌 자리가 범위 내에 들어온다면
                 stonepos = nstonepos;
@@ -65,9 +58,6 @@ void move(){
             nkingpos[0]=kfirst+'A'-1;
             nkingpos[1]=ksecond+'0';
 
-            //cout<<"다음: " << nkingpos<<'\n';
-            //cout<<"f: "<<kfirst<<"s: "<<ksecond<<'\n';
-
             if(!valid(kfirst, ksecond)){
                 continue;
             }
@@ -76,8 +66,6 @@ void move(){
                 sfirst=sfirst-1;
                 nstonepos[0]=sfirst+'A'-1;
                 nstonepos[1]=ssecond+'0';
-                //cout<<"다음: "<<nstonepos<<'\n';
-                //cout<<"second: "<<sfirst<<'\n';
             }
             if(valid(sfirst, ssecond)){
                 stonepos = nstonepos;
@@ -86,25 +74,19 @@ void move(){
         }
 
         else if(command[i]=="B"){ //B이동
-            
-            //kfirst=kfirst+1;
+
             ksecond=ksecond-1;
             nkingpos[0]=kfirst+'A'-1;
             nkingpos[1]=ksecond+'0';
-
-            //cout<<"다음: " << nkingpos<<'\n';
-            //cout<<"f: "<<kfirst<<"s: "<<ksecond<<'\n';
 
             if(!valid(kfirst, ksecond)){
                 continue;
             }
 
             if(nkingpos==stonepos){
-                //sfirst=sfirst+1;
                 ssecond=ssecond-1;
                 nstonepos[0]=sfirst+'A'-1;
                 nstonepos[1]=ssecond+'0';
-                //cout<<"다음: "<<nstonepos<<'\n';
             }
             if(valid(sfirst, ssecond)){
                 stonepos = nstonepos;
@@ -113,25 +95,19 @@ void move(){
         }
 
         else if(command[i]=="T"){ //T이동
-            
-            //kfirst=kfirst+1;
+           
             ksecond=ksecond+1;
             nkingpos[0]=kfirst+'A'-1;
             nkingpos[1]=ksecond+'0';
-
-            //cout<<"다음: " << nkingpos<<'\n';
-            //cout<<"f: "<<kfirst<<"s: "<<ksecond<<'\n';
 
             if(!valid(kfirst, ksecond)){ 
                 continue;
             }
 
             if(nkingpos==stonepos){
-                //sfirst=sfirst+1;
                 ssecond=ssecond+1;
                 nstonepos[0]=sfirst+'A'-1;
                 nstonepos[1]=ssecond+'0';
-                //cout<<"다음: "<<nstonepos<<'\n';
             }
             if(valid(sfirst, ssecond)){
                 stonepos = nstonepos;
@@ -145,9 +121,6 @@ void move(){
             nkingpos[0]=kfirst+'A'-1;
             nkingpos[1]=ksecond+'0';
 
-            //cout<<"다음: " << nkingpos<<'\n';
-            //cout<<"f: "<<kfirst<<"s: "<<ksecond<<'\n';
-
             if(!valid(kfirst, ksecond)){
                 continue;
             }
@@ -157,7 +130,6 @@ void move(){
                 ssecond=ssecond+1;
                 nstonepos[0]=sfirst+'A'-1;
                 nstonepos[1]=ssecond+'0';
-                //cout<<"다음: "<<nstonepos<<'\n';
             }
             if(valid(sfirst, ssecond)){
                 stonepos = nstonepos;
@@ -172,9 +144,6 @@ void move(){
             nkingpos[0]=kfirst+'A'-1;
             nkingpos[1]=ksecond+'0';
 
-            //cout<<"다음: " << nkingpos<<'\n';
-            //cout<<"f: "<<kfirst<<"s: "<<ksecond<<'\n';
-
             if(!valid(kfirst, ksecond)){
                 continue;
             }
@@ -184,7 +153,6 @@ void move(){
                 ssecond=ssecond+1;
                 nstonepos[0]=sfirst+'A'-1;
                 nstonepos[1]=ssecond+'0';
-                //cout<<"다음: "<<nstonepos<<'\n';
             }
             if(valid(sfirst, ssecond)){
                 stonepos = nstonepos;
@@ -198,9 +166,6 @@ void move(){
             nkingpos[0]=kfirst+'A'-1;
             nkingpos[1]=ksecond+'0';
 
-            //cout<<"다음: " << nkingpos<<'\n';
-            //cout<<"f: "<<kfirst<<"s: "<<ksecond<<'\n';
-
             if(!valid(kfirst, ksecond)){
                 continue;
             }
@@ -210,7 +175,6 @@ void move(){
                 ssecond=ssecond-1;
                 nstonepos[0]=sfirst+'A'-1;
                 nstonepos[1]=ssecond+'0';
-                //cout<<"다음: "<<nstonepos<<'\n';
             }
             if(valid(sfirst, ssecond)){
                 stonepos = nstonepos;
@@ -224,9 +188,6 @@ void move(){
             nkingpos[0]=kfirst+'A'-1;
             nkingpos[1]=ksecond+'0';
 
-            //cout<<"다음: " << nkingpos<<'\n';
-            //cout<<"f: "<<kfirst<<"s: "<<ksecond<<'\n';
-
             if(!valid(kfirst, ksecond)){
                 continue;
             }
@@ -236,7 +197,6 @@ void move(){
                 ssecond=ssecond-1;
                 nstonepos[0]=sfirst+'A'-1;
                 nstonepos[1]=ssecond+'0';
-                //cout<<"다음: "<<nstonepos<<'\n';
             }
             if(valid(sfirst, ssecond)){
                 stonepos = nstonepos;
