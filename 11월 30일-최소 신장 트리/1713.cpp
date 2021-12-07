@@ -32,7 +32,7 @@ map<int, ci>::iterator delCandidate(map<int, ci> &candidate) { //사진틀이 �
  */
 
 int main() {
-    int n, m, input;
+    int n, m, input; //사진틀 크기, 추천하는 횟수, 추천하는 후보
 
     //입력 & 연산
     cin >> n >> m;
