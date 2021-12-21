@@ -26,7 +26,7 @@ bool canMelt(int row, int col) {
         if (board[nr][nc] == -1) //외부 공간 접촉하는가
             cnt++;
     }
-    //외부 공간과 접촉한 면이 2개 이상인가 = 녹는가에 대한 답 리턴
+    //외부 공간과 접촉한 면이 2개 이상인가에 대한 답 리턴
     return cnt >= 2;
 }
 
